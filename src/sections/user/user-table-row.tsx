@@ -32,7 +32,7 @@ export function UserTableRow({ row }: UserTableRowProps) {
   return (
     <TableRow hover tabIndex={-1} >
       {/* Node Id Column */}
-      <TableCell></TableCell>
+      <TableCell>{null}</TableCell>
 
       {/* Name Column */}
       
