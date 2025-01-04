@@ -17,9 +17,9 @@ const NodeActivityChart: React.FC = () => {
     series={[
       {
         data: [
-          { id: 0, value: 10, label: 'Node 1' },
-          { id: 1, value: 15, label: 'Node 2' },
-          { id: 2, value: 20, label: 'Node 3' },
+          { id: 0, value: 10, label: 'Active' },
+          { id: 1, value: 15, label: 'Inactive' },
+          { id: 2, value: 20, label: 'Cancelled' },
         ],
       },
     ]}
