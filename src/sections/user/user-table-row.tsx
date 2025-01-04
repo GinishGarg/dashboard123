@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 import { Iconify } from 'src/components/iconify';
 import { Label } from 'src/components/label';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -37,7 +38,7 @@ export function UserTableRow({ row }: UserTableRowProps) {
       {/* Name Column */}
       
       <TableCell component="th" scope="row">
-        <Box gap={2} display="flex" alignItems="center">
+        <Box gap={0} display="flex" alignItems="center">
           {row.nodeId}
         </Box>
       </TableCell>
@@ -54,14 +55,23 @@ export function UserTableRow({ row }: UserTableRowProps) {
       </TableCell>
 
       {/* Action Column with separate buttons */}
-      <TableCell align="right">
-        <IconButton onClick={handleDetails} sx={{ marginRight: 1 }}>
-          <Iconify icon="eva:info-fill" />
-        </IconButton>
-
-        <IconButton onClick={handleDelete}>
-          <Iconify icon="solar:trash-bin-trash-bold" />
-        </IconButton>
+      <TableCell >
+      <Button
+          onClick={handleDetails}
+          variant="text"
+          sx={{ textTransform: 'none', marginRight: 2 }}
+        >
+          Details
+        </Button>
+</TableCell>
+<TableCell >
+        <Button
+          onClick={handleDelete}
+          variant="text"
+          sx={{ textTransform: 'none', color: 'error.main' }}
+        >
+          Delete
+        </Button>
       </TableCell>
     </TableRow>
   );

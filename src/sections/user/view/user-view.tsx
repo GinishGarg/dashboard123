@@ -23,9 +23,18 @@ import { UserTableToolbar } from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 
 import type { UserProps } from '../user-table-row';
+import NodeActivityChartButton from 'src/components/userChart/NodeActivityChartButton';
 
 
 export function UserView() {
+  const [nodeData, setNodeData] = useState([
+    { nodeId: '1', activityCount: 10 },
+    { nodeId: '2', activityCount: 15 },
+    { nodeId: '3', activityCount: 5 },
+    // Add more node data as needed
+  ]);
+  
+  const [showChart, setShowChart] = useState(false); // State to manage chart visibility
   const table = useTable();
 
   const [filterName, setFilterName] = useState('');
@@ -38,21 +47,21 @@ export function UserView() {
 
   const notFound = !dataFiltered.length && !!filterName;
 
+  const toggleChart = () => {
+    setShowChart((prev) => !prev); // Toggle the chart visibility
+  };
+
   return (
     <DashboardContent>
-       
       <Box display="flex" alignItems="center" mb={5}>
         <Typography variant="h2" flexGrow={1}>
           Nodes
         </Typography>
-        <Button
-          variant="contained"
-          color="inherit"
-          startIcon={<Iconify icon="mingcute:add-line" />}
-        >
-          Add new Node
-        </Button>
+        
+        
       </Box>
+
+
 
       <Card>
         <UserTableToolbar
@@ -76,7 +85,7 @@ export function UserView() {
   onSelectAllRows={(checked) =>
     table.onSelectAllRows(
       checked,
-      _users.map((user) => user.id)
+      _users.map((user) => user.nodeId)
     )
   }
   headLabel={[
@@ -84,8 +93,9 @@ export function UserView() {
     { id: 'name', label: 'Name' },
     { id: 'port', label: 'Port' },
     { id: 'status', label: 'Status' },
-    {}
+    {},{}
   ]}
+  
 />
 
               <TableBody>
@@ -112,6 +122,7 @@ export function UserView() {
               </TableBody>
             </Table>
           </TableContainer>
+          <NodeActivityChartButton />
         </Scrollbar>
 
         <TablePagination
